@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .titles {
+            display: flex;
+            width: 300;
+        }
+        
+        .titles div {
+            flex: 1;
+            height: 50px;
+        }
+        
+        .active {
+            color: red;
+        }
+        
+        .contents {
+            width: 300px;
+            height: 200px;
+        }
+        
+        .contents div {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .contents div.cc {
+            display: block;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <div class="titles">
+            <div :class="currentIndex==index?'active':''" v-for="(item,index) in list" @click='change(index)'>{{item.title}}</div>
+        </div>
+        <div class="contents">
+            <div :class="currentIndex==index?'cc':''" v-for='(item,index) in list'>{{item.cont}}</div>
+        </div>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            currentIndex: 0,
+            list: [{
+                id: 1,
+                title: 'apple',
+                cont: '1111111'
+            }, {
+                id: 2,
+                title: 'orange',
+                cont: '22222'
+            }, {
+                id: 3,
+                title: 'lemon',
+                cont: '33333'
+            }]
+        },
+        methods: {
+            change(index) {
+                this.currentIndex = index
+            }
+        },
+    })
+</script>
+
+</html>
